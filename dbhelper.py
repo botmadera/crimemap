@@ -9,7 +9,7 @@ class DBHelper:
         connection = self.connect()
         try:
             query = "SELECT description FROM crimes;"
-        with connection.cursor() as cursor:
+            with connection.cursor() as cursor:
             cursor.execute(query)
             return cursor.fetchall()
         finally:
