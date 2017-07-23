@@ -5,15 +5,20 @@
 		  
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDf1JN1n8ZxpInwRJTkN7kmcbvQ3BHQZzk&callback=initMap" type="text/javascript"></script>
 		<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script> -->
+        
+        <script type="text/javascript">
+            var data = {{ crimenes | tojson }};
+            console.log(data[0].description);
+        </script>
 
 		<script type="text/javascript">
 			var map;
-			var marker;
+            var marker;
             function initialize() {
                 console.log("Inicie");
-                var mapOptions = { center: new google.maps.LatLng(-25.2891832,-57.6048733),zoom: 15};
-				map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-			
+                var mapOptions = { center: new google.maps.LatLng(-25.2891832, -57.6048733), zoom: 15 };
+                map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
                 google.maps.event.addListener(map, 'click', function (event) { placeMarker(event.latLng); });
                 console.log("antes de placeCrimes");
                 placeCrimes();
@@ -21,15 +26,15 @@
             }
             
             function placeCrimes() {
-                console.log("La puta madre");
-                for (i = 0; i < 1; i++) {
-                    console.log("ENTRE AL PUTO FOR");
+                
+                for (i = 0; i < data.length; i++) {
+                    
                     crime = new google.maps.Marker({
-                        position: new google.maps.LatLng("-25.28606233005753","-57.58561134338379"),
+                        position: new google.maps.LatLng(data[i].latitude, data[i].longitude),
                         map: map,
                         title: "soy un titulo"
                     });
-                    console.log("estoy en el for final");
+                    console.log(data);
                 } 
             }
 
@@ -48,6 +53,8 @@
 				
 			}
 		</script>
+
+
 	</head>
 
 	<body onload="initialize()">
