@@ -28,7 +28,7 @@
             function placeCrimes(objeto) {
                 
                 for (i = 0; i < objeto.length; i++) {
-                    
+                    console.log("i="+i+"objeto.length =" + objeto.length);
                     crime = new google.maps.Marker({
                         position: new google.maps.LatLng(objeto[i].latitude, objeto[i].longitude),
                         map: map,
