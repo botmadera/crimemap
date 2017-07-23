@@ -11,6 +11,7 @@
 			var map;
             var marker;
             var data = {{ crimes | tojson }};
+            console.log(data);
             var crimenes = JSON.parse(data);
 
             function initialize() {
