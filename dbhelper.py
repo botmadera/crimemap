@@ -6,7 +6,7 @@ class DBHelper:
     def connect(self, database="crimemap"):
         return pymysql.connect(host='localhost',user=dbconfig.db_user,passwd=dbconfig.db_password,db=database)
 
-    def get_all_inputs(self):
+    def get_all_crimes(self):
         connection = self.connect()
         try:
             query = "SELECT latitude, longitude, date, category, description FROM crimes;"
@@ -22,7 +22,7 @@ class DBHelper:
                     'description': crime[4]
                 }
                 named_crimes.append(named_crime)
-            return cursor.fetchall()
+            return named_crimes
         finally:
             connection.close()
 
