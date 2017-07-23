@@ -1,5 +1,6 @@
 import pymysql
 import dbconfig
+import datetime
 
 class DBHelper:
     def connect(self, database="crimemap"):
@@ -8,9 +9,19 @@ class DBHelper:
     def get_all_inputs(self):
         connection = self.connect()
         try:
-            query = "SELECT description FROM crimes;"
+            query = "SELECT latitude, longitude, date, category, description FROM crimes;"
             with connection.cursor() as cursor:
                 cursor.execute(query)
+            named_crimes = []
+            for crime in cursor:
+                named_crime = {
+                    'latidude': crime[0],
+                    'longitude': crime[1],
+                    'date': datetime.datetime.strftime(crime[2],'%Y-%m-%d'),
+                    'category': crime[3],
+                    'description': crime[4]
+                }
+                named_crimes.append(named_crime)
             return cursor.fetchall()
         finally:
             connection.close()

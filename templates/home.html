@@ -4,7 +4,7 @@
 		<link type="text/css" rel="stylesheet" href="{{url_for('static',filename='css/style.css') }}"/>
 		  
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDf1JN1n8ZxpInwRJTkN7kmcbvQ3BHQZzk&callback=initMap" type="text/javascript"></script>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+		<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script> -->
 
 		<script type="text/javascript">
 			var map;
@@ -13,8 +13,22 @@
                 var mapOptions = { center: new google.maps.LatLng(-25.2891832,-57.6048733),zoom: 15};
 				map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 			
-				google.maps.event.addListener(map, 'click',function(event){placeMarker(event.latLng);});
-			}
+                google.maps.event.addListener(map, 'click', function (event) { placeMarker(event.latLng); });
+
+                placeCrimes({{crimes | safe }});
+            }
+            
+            function placeCrimes(crimes) {
+                for (i = 0; i < crimes.length; i++) {
+                    crime = new google.maps.Marker({
+                        position: new google.maps.LatLng(crimes[i].latitude, crimes[i].longitude),
+                        map: map,
+                        title: crimes[i].date + "\n" +
+                        crimes[i].category + "\n" + crimes[i].description
+                    });
+
+                } 
+            }
 
 			function placeMarker(location) {
 				if (marker){
