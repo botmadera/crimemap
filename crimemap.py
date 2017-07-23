@@ -18,6 +18,7 @@ DB = DBHelper()
 @app.route("/")
 def home():
     crimes = DB.get_all_crimes()
+    print(crimes)
     crimes = json.dumps(crimes)
     return render_template("home.html", crimes = crimes)
 
