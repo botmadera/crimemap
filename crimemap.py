@@ -20,7 +20,7 @@ def home():
     crimes = DB.get_all_crimes()
     crimes = json.dumps(crimes)
     print(crimes)
-    return render_template("home.html", crimenes = crimes)
+    return render_template("home.html", crimes = crimes)
 
 @app.route("/add", methods=["POST"])
 def add():

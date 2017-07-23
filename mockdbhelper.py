@@ -20,7 +20,7 @@ class MockDBHelper:
                 'date': '2000-01-01',
                 'category': 'muggin',
                 'description': 'mock description'},{'latitude': -25.297651,
-                 'longitude': -57.593593,
+                 'longitude': -57.633593,
                 'date': '2000-01-01',
                 'category': 'muggin',
                 'description': 'mock description'}]

@@ -6,35 +6,34 @@
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDf1JN1n8ZxpInwRJTkN7kmcbvQ3BHQZzk&callback=initMap" type="text/javascript"></script>
 		<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script> -->
         
-        <script type="text/javascript">
-            var data = {{ crimenes | tojson }};
-            console.log(data[0].description);
-        </script>
 
 		<script type="text/javascript">
 			var map;
             var marker;
+            var data = {{ crimes | tojson }};
+            var crimenes = JSON.parse(data);
+
             function initialize() {
                 console.log("Inicie");
                 var mapOptions = { center: new google.maps.LatLng(-25.2891832, -57.6048733), zoom: 15 };
                 map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
                 google.maps.event.addListener(map, 'click', function (event) { placeMarker(event.latLng); });
-                console.log("antes de placeCrimes");
-                placeCrimes();
-                console.log("despues de placeCrimes");
+               
+                placeCrimes(crimenes);
+           
             }
             
-            function placeCrimes() {
+            function placeCrimes(objeto) {
                 
-                for (i = 0; i < data.length; i++) {
+                for (i = 0; i < objeto.length; i++) {
                     
                     crime = new google.maps.Marker({
-                        position: new google.maps.LatLng(data[i].latitude, data[i].longitude),
+                        position: new google.maps.LatLng(objeto[i].latitude, objeto[i].longitude),
                         map: map,
-                        title: "soy un titulo"
+                        title: objeto[i].date + "\n" + objeto[i].category + "\n" + objeto[i].description
                     });
-                    console.log(data);
+
                 } 
             }
 
