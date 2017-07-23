@@ -22,6 +22,9 @@
                 google.maps.event.addListener(map, 'click', function (event) { placeMarker(event.latLng); });
                
                 placeCrimes(crimenes);
+
+
+           
            
             }
             
@@ -36,7 +39,8 @@
                     });
                     console.log("loop# " + objeto[i].description + " | " + objeto[i].date + "\n");
 
-                } 
+                }
+                crime.setMap(map);
             }
 
 			function placeMarker(location) {
