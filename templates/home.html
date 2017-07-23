@@ -9,24 +9,27 @@
 		<script type="text/javascript">
 			var map;
 			var marker;
-			function initialize() {
+            function initialize() {
+                console.log("Inicie");
                 var mapOptions = { center: new google.maps.LatLng(-25.2891832,-57.6048733),zoom: 15};
 				map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 			
                 google.maps.event.addListener(map, 'click', function (event) { placeMarker(event.latLng); });
-
-                placeCrimes({{crimes | safe }});
+                console.log("antes de placeCrimes");
+                placeCrimes();
+                console.log("despues de placeCrimes");
             }
             
-            function placeCrimes(crimes) {
-                for (i = 0; i < crimes.length; i++) {
+            function placeCrimes() {
+                console.log("La puta madre");
+                for (i = 0; i < 1; i++) {
+                    console.log("ENTRE AL PUTO FOR");
                     crime = new google.maps.Marker({
-                        position: new google.maps.LatLng(crimes[i].latitude, crimes[i].longitude),
+                        position: new google.maps.LatLng("-25.28606233005753","-57.58561134338379"),
                         map: map,
-                        title: crimes[i].date + "\n" +
-                        crimes[i].category + "\n" + crimes[i].description
+                        title: "soy un titulo"
                     });
-
+                    console.log("estoy en el for final");
                 } 
             }
 
@@ -50,8 +53,8 @@
 	<body onload="initialize()">
 
 	<h1>CrimeMap</h1>
+  <p>{{crimenes}}</p>
 	<p>A map of recent criminal activity in the Grahamstown area. </p>
-
 
 
 	<div id="map-canvas"></div>
