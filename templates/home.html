@@ -31,13 +31,15 @@
             function placeCrimes(objeto) {
                 
                 for (i = 0; i < objeto.length; i++) {
-                    console.log("for -> i= "+i+" objeto.length =" + objeto.length);
+                    console.log("for -> i= " + i + " objeto.length =" + objeto.length);
+                    console.log("["+ i +"]# " + objeto[i].description + " | " + objeto[i].date + "\n");
+                    console.log("COORDS:" + objeto[i].latitude + " | " + objeto[i].longitude + "\n");
                     crime = new google.maps.Marker({
                         position: new google.maps.LatLng(objeto[i].latitude, objeto[i].longitude),
                         map: map,
                         title: objeto[i].date + "\n" + objeto[i].category + "\n" + objeto[i].description
                     });
-                    console.log("loop# " + objeto[i].description + " | " + objeto[i].date + "\n");
+                    
 
                 }
                 crime.setMap(map);
