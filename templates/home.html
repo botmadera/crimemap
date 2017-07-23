@@ -11,12 +11,12 @@
 			var map;
             var marker;
             var data = {{ crimes | tojson }};
-            console.log(data);
+            //console.log(data);
             var crimenes = JSON.parse(data);
 
             function initialize() {
                 console.log("Inicie");
-                var mapOptions = { center: new google.maps.LatLng(-25.2891832, -57.6048733), zoom: 15 };
+                var mapOptions = { center: new google.maps.LatLng(-25.2891832, -57.6048733), zoom: 13 };
                 map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
                 google.maps.event.addListener(map, 'click', function (event) { placeMarker(event.latLng); });
